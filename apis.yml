@@ -28,11 +28,15 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 x-website-status: parked
-x-website-status-checked: '2026-07-18'
+x-website-status-checked: '2026-08-14'
+x-website-status-detail: >-
+  bravado.co refuses HTTPS (connection refused on 443) and answers plain HTTP with the
+  Gandi domain-parking page on every path. www.bravado.co is a Gandi web-redirect,
+  bravado.me serves the same parking page, and api./app./info.bravado.co are NXDOMAIN.
 x-has-public-api: false
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-14'
 tags:
 - Company
 - Sales
@@ -54,7 +58,31 @@ common:
 - type: Website
   url: https://bravado.co/
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-14'
+  status: minimal
+  artifacts_added: 2
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Full contract-discovery pass run against every Bravado host. No reachable product or
+    API surface exists; two negative-result artifacts were recorded (well-known probe,
+    packages name-collision guard). No pointers emitted — every /.well-known and spec path
+    returns a soft-200 parking page, which is not evidence of a served document.
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    bravado.co refuses HTTPS outright and serves a Gandi "this domain name is parked by the
+    owner" page over plain HTTP for every path, so the War Room product, its GraphQL backend
+    and any developer surface are simply gone from the public internet.
+  evidence:
+  - url: https://bravado.co/
+    status: 0
+  - url: http://bravado.co/
+    status: 200
+  - url: http://bravado.co/.well-known/agent-card.json
+    status: 200
+  - url: http://bravado.co/openapi.json
+    status: 200
+  - url: https://bravado.me/war-room
+    status: 0
+  checked: '2026-08-14'
