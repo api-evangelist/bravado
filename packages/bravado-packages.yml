@@ -1,0 +1,39 @@
+generated: '2026-08-14'
+method: none
+source: registry searches (PyPI, npm) + GitHub org lookup
+package_count: 0
+packages: []
+note: >-
+  NEGATIVE RESULT recorded deliberately, because the string "bravado" is heavily
+  collided and a future round could easily credit this company with software it did
+  not write. None of the following belong to Bravado, the sales community / War Room
+  company profiled here.
+name_collisions:
+- registry: pypi
+  name: bravado
+  version: 12.0.1
+  url: https://pypi.org/project/bravado/
+  owner: Yelp, Inc. and Digium, Inc.
+  repository: https://github.com/Yelp/bravado
+  summary: Library for accessing Swagger-enabled API's
+  official: false
+  reason: >-
+    Yelp's Python Swagger client library. Unrelated to Bravado the sales community;
+    predates it and is authored by Yelp/Digium.
+- registry: npm
+  name: bravado
+  version: null
+  url: https://www.npmjs.com/package/bravado
+  official: false
+  reason: >-
+    npm registry document carries no dist-tags.latest, no description and no
+    repository; nothing ties it to this company.
+- registry: github
+  name: github.com/bravado
+  url: https://github.com/bravado
+  official: false
+  reason: >-
+    A GitHub org of the same name exists (28 public repos) but is a different entity —
+    Docker base images, an nginx/Rancher proxy, Java/Ant-to-Maven tooling and a "bsync"
+    tool, with activity from 2014, before Bravado the sales community was founded, and
+    no link to bravado.co. Not wired as GitHubOrganization.

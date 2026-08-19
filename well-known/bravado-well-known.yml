@@ -1,0 +1,80 @@
+generated: '2026-08-14'
+method: probed
+source: live HTTP probes of bravado.co (the only host named in apis.yml)
+host: http://bravado.co
+note: >-
+  NEGATIVE RESULT — no well-known document is served. bravado.co refuses HTTPS entirely
+  (connection refused on port 443) and answers plain HTTP with a Gandi domain-parking page
+  ("This domain name has been registered with Gandi.net. It is currently parked by the
+  owner."). That parking page is served for EVERY path, so each probe below returned a
+  soft-200 carrying the same HTML shell rather than a document. A 200 here is not evidence
+  of a served surface, and no WellKnown / SecurityTxt / AgentCard / OpenAPI pointer is
+  emitted from this probe.
+tls:
+  https_reachable: false
+  detail: connection refused on 443; probes were run over plain HTTP
+documents:
+- path: /.well-known/security.txt
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /.well-known/openid-configuration
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /.well-known/api-catalog
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /.well-known/ai-plugin.json
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /.well-known/agent-card.json
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /.well-known/agent.json
+  status: 200
+  document: false
+  body: html-parking-page
+contract_discovery:
+- path: /openapi.json
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /openapi.yaml
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /swagger.json
+  status: 000
+  document: false
+  body: connection-error
+- path: /api-docs
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /llms.txt
+  status: 200
+  document: false
+  body: html-parking-page
+- path: /graphql
+  status: 200
+  document: false
+  body: html-parking-page
+other_hosts_probed:
+- host: www.bravado.co
+  result: CNAME webredir.vip.gandi.net; HTTPS connection refused
+- host: api.bravado.co
+  result: NXDOMAIN
+- host: app.bravado.co
+  result: NXDOMAIN
+- host: info.bravado.co
+  result: NXDOMAIN
+- host: bravado.me
+  result: same Gandi parking page (HTTP 200), HTTPS refused
